@@ -1,6 +1,6 @@
 <script setup>
 useHead({
-  title: 'Vitesse Nuxt 3',
+  title: 'Devon_',
   link: [
     {
       rel: 'icon', type: 'image/png', href: '/nuxt.png',
@@ -16,14 +16,16 @@ useHead({
 </template>
 
 <style>
-html, body , #__nuxt{
+html,
+body,
+#__nuxt {
   height: 100vh;
   margin: 0;
   padding: 0;
 }
 
 html.dark {
-  background: #222;
-  color: white;
+  background: #000;
+  color: rgba(255, 255, 255, .9);
 }
 </style>
