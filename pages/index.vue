@@ -1,20 +1,22 @@
 <script lang="ts" setup>
-const { find } = useStrapi4()
 const tags: IPostTag[] = ['html', 'css', 'js', 'node']
 const selectedTag = useState<IPostTag>('selectedTag')
-const searchRequest = useState<string>('searchRequest')
+const searchEntry = useState<string>('searchRequest')
+
+const { find } = useStrapi4()
+
+const { result, search } = useSearch('devon-project')
 
 const { data: posts, refresh } = await useAsyncData('posts',
   () => find('posts', {
     pagination: { start: 0, limit: 3 },
-    filters: {
-      tags: selectedTag.value || undefined,
-      title: searchRequest.value || undefined,
-    },
+    filters: { tags: selectedTag.value || undefined },
   }))
 
+const searchPosts = () => search({ query: searchEntry.value })
+
 watch(selectedTag, refresh)
-watch(searchRequest, refresh)
+watch(searchEntry, searchPosts)
 </script>
 
 <template>
@@ -29,11 +31,12 @@ watch(searchRequest, refresh)
       </template>
     </Suspense>
     <InputEntry />
-    <Search v-model:inputValue="searchRequest" v-model:inputTag="selectedTag" />
-    <div>{{ searchRequest }}</div>
+    <Search v-model:inputValue="searchEntry" />
+    <div>{{ searchEntry }}</div>
 
     <Tags v-model:selected="selectedTag" :tags="tags" />
 
-    <pre>{{ posts }}</pre>
+    <div v-if="result" v-for="hit in result.hits" :key="hit.id">{{ hit.attributes.Title }}</div>
+
   </div>
 </template>
