@@ -7,7 +7,12 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/color-mode',
     '@nuxtjs/strapi',
+    '@nuxtjs/algolia',
   ],
+  algolia: {
+    apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
+    applicationId: process.env.ALGOLIA_APP_API_KEY,
+  },
   experimental: {
     reactivityTransform: true,
     // viteNode: true,
