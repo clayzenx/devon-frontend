@@ -1,1 +1,9 @@
-type IPostTag = 'html' | 'css' | 'js' | 'node' | ''
+interface IStrapiCategory {
+  id: number;
+  attributes: {
+    name: string;
+    slug: string;
+    createdAt: Date;
+    updatedAt: Date;
+  }
+} 
