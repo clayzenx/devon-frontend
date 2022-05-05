@@ -10,7 +10,7 @@ const select = (id: number) => emit('update:selected', categories.find(category 
 </script>
 
 <template>
-  <div flex gap-2 items-center justify-center>
+  <div flex gap-2 items-center justify-start>
     <Category v-for="category in categories" :key="category.id" :category="category"
       @click="() => select(category.id)" />
   </div>
