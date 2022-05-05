@@ -14,9 +14,7 @@ watch(searchEntry, searchPosts)
 </script>
 
 <template>
-  <div>
-    <Search v-model:inputValue="searchEntry" v-model:selectedCategory="selectedCategory" />
-    <Categories v-model:selected="selectedCategory" :categories="categories.data as Array<IStrapiCategory>" />
-    <pre v-if="result">{{ searchHits }}</pre>
-  </div>
+  <Search v-model:inputValue="searchEntry" v-model:selectedCategory="selectedCategory" />
+  <Categories v-model:selected="selectedCategory" :categories="categories.data as Array<IStrapiCategory>" />
+  <pre v-if="result">{{ searchHits }}</pre>
 </template>

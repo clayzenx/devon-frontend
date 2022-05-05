@@ -13,7 +13,7 @@ const close = () => emit('update:selectedCategory', null)
 <template>
   <div flex gap-2 p-2 items-center justify-left text-right all:transition-400>
     <span v-if="selectedCategory" flex items-center gap-1 rounded py-1 px-2 text-sm bg-dark op70 cursor-pointer
-      hover="bg-dark-200" @click="close">
+      hover="bg-dark-200" light:bg-warmgray-200 light:hover="bg-warmgray-300" @click="close">
       <span>
         {{ selectedCategory?.attributes.name }}
       </span>
