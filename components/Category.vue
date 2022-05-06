@@ -5,7 +5,7 @@ const { category } = defineProps<{
 </script>
 
 <template>
-  <span border rounded border-dashed border-white light:border-truegray border-op20 px-5 py-1 op70 cursor-pointer
+  <span border rounded border-dashed border-white light:border-truegray border-op20 px-5 py-1 op60 cursor-pointer
     hover="bg-dark" light:hover="bg-warmgray-200" all:transition-400>
     {{ category.attributes.name }}
   </span>

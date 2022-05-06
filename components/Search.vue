@@ -19,7 +19,7 @@ const close = () => emit('update:selectedCategory', null)
       </span>
       <div i-ion-close-outline />
     </span>
-    <input type="text" v-model="inputValue" @input="input" bg-transparent p-2 text-lg focus:outline-none
+    <input type="text" v-model="inputValue" @input="input" bg-transparent p-2 op40 text-lg focus:outline-none
       placeholder="Search something..." />
   </div>
 </template>

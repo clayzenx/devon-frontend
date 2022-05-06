@@ -6,15 +6,15 @@ const { find } = useStrapi4()
 const { result, search } = useSearch('production_api::article.article')
 const { data: categories } = await useAsyncData('categories', () => find<Strapi4Response<IStrapiCategory>>('categories'))
 const searchPosts = () => search({ query: searchEntry.value })
-const searchHits = computed(() =>
-  selectedCategory.value ? result.value.hits.filter(hit => hit.category.id === selectedCategory.value.id) : result.value.hits
-)
-onMounted(() => search({}))
+const searchHits = computed(() => {
+  if (!searchEntry.value) return []
+  return selectedCategory.value ? result.value.hits.filter(hit => hit.category.id === selectedCategory.value.id) : result.value.hits
+})
 watch(searchEntry, searchPosts)
 </script>
 
 <template>
   <Search v-model:inputValue="searchEntry" v-model:selectedCategory="selectedCategory" />
   <Categories v-model:selected="selectedCategory" :categories="categories.data as Array<IStrapiCategory>" />
-  <pre v-if="result">{{ searchHits }}</pre>
+  <SearchResult v-if="result && searchHits.length" v-model:hits="searchHits" />
 </template>
