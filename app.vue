@@ -24,6 +24,10 @@ body,
   padding: 0;
 }
 
+html.light {
+  background: #fff;
+}
+
 html.dark {
   background: #000;
   color: rgba(255, 255, 255, .9);

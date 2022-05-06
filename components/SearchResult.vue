@@ -9,7 +9,7 @@ const { find } = useStrapi4()
 const { data } = await useAsyncData('search-result-locale',
   () => find<Strapi4Response<IStrapiLocales>>('search-result-locale', { locale: locale.value })
 )
-const { justNow, today, yesterday, lastWeek, later } = (data.value.data as any).attributes
+const { justNow, today, yesterday, lastWeek, later, noEntry } = (data.value.data as any).attributes
 
 const posts = computed(() =>
   breakData(hits.map(hit => ({ ...hit, date: hit.publishedAt })))
@@ -19,6 +19,7 @@ const posts = computed(() =>
 
 <template>
   <div mt-4 flex flex-col gap-3>
+    <span v-if="!hits.length" op30 font-500 mb-2>{{ noEntry }}</span>
     <section v-if="posts.justNow.length">
       <h3 op30 font-500 mb-2>{{ justNow }}</h3>
       <Post v-for="post in posts.justNow" :post="post" :key="post.id" />

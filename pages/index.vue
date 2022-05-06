@@ -16,5 +16,5 @@ watch(searchEntry, searchPosts)
 <template>
   <Search v-model:inputValue="searchEntry" v-model:selectedCategory="selectedCategory" />
   <Categories v-model:selected="selectedCategory" :categories="categories.data as Array<IStrapiCategory>" />
-  <SearchResult v-if="result && searchHits.length" v-model:hits="searchHits" />
+  <SearchResult v-if="result && searchEntry" v-model:hits="searchHits" />
 </template>
