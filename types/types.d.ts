@@ -17,7 +17,7 @@ interface IStrapiAuthor {
 }
 
 interface IStrapiPost {
-  id: number;
+  id?: number;
   title: string;
   description: string;
   content: string;
@@ -25,13 +25,23 @@ interface IStrapiPost {
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date;
-  category: IStrapiCategory;
-  author: IStrapiAuthor;
+  category?: IStrapiCategory;
+  author?: IStrapiAuthor;
+  Poster?: string;
 }
 
 interface IStrapiLocales {
   attributes: {}
   meta: {}
+}
+
+interface IStrapiMeta {
+  pagination?: {
+    page: number,
+    pageSize: number,
+    pageCount: number,
+    total: number
+  }
 }
 
 type ILocale = 'ru' | 'en' | 'es' | 'zh' | 'ja'

@@ -7,12 +7,14 @@ const change = (loc: ILocale) => (set(loc), showLocales.value = false)
 
 <template>
   <div>
-    <button @click="drop" cursor-pointer outline-none op80 hover:op100>
+    <button @click="drop" transition-all-300 cursor-pointer outline-none op80 hover:op100>
       {{ locale }}
     </button>
 
     <ul v-if="showLocales" absolute>
-      <li v-for="locale in locales" @click="() => change(locale)" cursor-pointer op50 hover:op70>{{ locale }}</li>
+      <li v-for="locale in locales" @click="() => change(locale)" transition-all-300 cursor-pointer op50 hover:op70>{{
+          locale
+      }}</li>
     </ul>
   </div>
 </template>

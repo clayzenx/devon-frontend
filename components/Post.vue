@@ -9,14 +9,14 @@ const dateFormating = (dateStr: string) =>
 </script>
 
 <template>
-  <article op60 hover:op100 cursor-pointer p2>
+  <article transition-all-300 op60 hover:op100 cursor-pointer>
     <span flex gap-3 items-center>
       <h3 text-lg> {{ post.title }}</h3>
       <span op70>{{ post.description }}</span>
     </span>
     <span text-sm relative top--1 op50 flex gap-3 font-300>
       <span>{{ dateFormating(post.publishedAt) }}</span>
-      <span op50>by {{ post?.author?.name }}</span>
+      <span op50>by {{ post?.author?.name || post?.Poster }}</span>
     </span>
   </article>
 </template>

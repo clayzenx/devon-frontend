@@ -18,7 +18,7 @@ const posts = computed(() =>
 </script>
 
 <template>
-  <div mt-4 flex flex-col gap-3>
+  <div mt-3 flex flex-col gap-3>
     <span v-if="!hits.length" op30 font-500 mb-2>{{ noEntry }}</span>
     <section v-if="posts.justNow.length">
       <h3 op30 font-500 mb-2>{{ justNow }}</h3>
