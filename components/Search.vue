@@ -4,17 +4,15 @@ const { inputValue, selectedCategory } = defineProps<{
   inputValue: string,
   selectedCategory: IStrapiCategory
 }>()
-
 const { locale } = useLocale()
 const { find } = useStrapi4()
-const { data } = await useAsyncData('search-result-locale',
+const { data, refresh } = await useAsyncData('search-result-locale',
   () => find<Strapi4Response<IStrapiLocales>>('search-result-locale', { locale: locale.value })
 )
-const { inputSearchPlaceholder } = (data.value.data as any).attributes
-
 const emit = defineEmits(['update:selectedCategory', 'update:inputValue'])
 const input = () => emit('update:inputValue', inputValue)
 const close = () => emit('update:selectedCategory', null)
+watch(locale, refresh)
 
 </script>
 
@@ -28,6 +26,6 @@ const close = () => emit('update:selectedCategory', null)
       <div i-ion-close-outline />
     </span>
     <input type="text" v-model="inputValue" @input="input" bg-transparent py-3 op40 text-lg focus:outline-none
-      :placeholder="inputSearchPlaceholder" />
+      :placeholder="(data.data as any).attributes.inputSearchPlaceholder" />
   </div>
 </template>

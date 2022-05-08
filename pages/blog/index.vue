@@ -6,13 +6,14 @@ const { locale } = useLocale()
 const { find } = useStrapi4()
 const { result, search } = useSearch('production_api::article.article')
 const { data: categories } = await useAsyncData('categories', () => find<Strapi4Response<IStrapiCategory>>('categories'))
-const { data: articles } = await useAsyncData('articles', () => find<Strapi4Response<IStrapiPost>>('articles', { locale: locale.value }))
+const { data: articles, refresh } = await useAsyncData('articles', () => find<Strapi4Response<IStrapiPost>>('articles', { locale: locale.value }))
 const searchPosts = () => search({ query: searchEntry.value })
 const searchHits = computed(() => {
   if (!searchEntry.value) return []
   return selectedCategory.value ? result.value.hits.filter(hit => hit.category.id === selectedCategory.value.id) : result.value.hits
 })
 watch(searchEntry, searchPosts)
+watch(locale, refresh)
 </script>
 
 <template>
