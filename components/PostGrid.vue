@@ -7,7 +7,7 @@ const { articles } = defineProps<{
 
 <template>
   <div flex flex-col gap-4 py-4>
-    <Post v-for="post in articles.data" :post="(post as any).attributes as IStrapiPost"
+    <Post v-for="post in articles.data" :post="{ id: (post as any).id, ...(post as any).attributes } as IStrapiPost"
       :key="(post as any).attributes.id" />
 
     <Pagination :page="5" :pages="25" />

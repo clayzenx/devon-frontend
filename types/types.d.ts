@@ -24,6 +24,7 @@ interface IStrapiPost {
   slug: string;
   createdAt: Date;
   updatedAt: Date;
+  locale: ILocale;
   publishedAt: Date;
   category?: IStrapiCategory;
   author?: IStrapiAuthor;

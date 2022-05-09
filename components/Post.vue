@@ -2,14 +2,17 @@
 const { post } = defineProps<{
   post: IStrapiPost
 }>()
+const { push } = useRouter()
+console.log(post)
 
 const dateFormating = (dateStr: string) =>
   (new Date(dateStr)).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' })
 
+const redirect = () => push(`/blog/${post.id}`)
 </script>
 
 <template>
-  <article transition-all-300 op60 hover:op100 cursor-pointer>
+  <article transition-all-300 op60 hover:op100 cursor-pointer @click="redirect">
     <span flex gap-3 items-center>
       <h3 text-lg> {{ post.title }}</h3>
       <span op70>{{ post.description }}</span>
