@@ -12,21 +12,18 @@ const { data: article } = await useAsyncData(`article-${params.id}`,
   () => findOne<Strapi4Response<IStrapiPost>>('articles', +postID?.value || +params.id)
 )
 postID = computed(() => {
-  const currentID = allLocales.findIndex(loc => loc === ((article.value.data as IStrapiLocales).attributes as IStrapiPost).locale)
+  const currentID = allLocales.findIndex(loc => loc === ((article.value.data as IStrapiContent).attributes as IStrapiPost).locale)
   const redirectID = allLocales.findIndex(loc => loc === locale.value)
   return +params.id - (currentID - redirectID)
 });
 
 watch(locale, () => push('/blog/' + postID.value))
 const app = useNuxtApp()
-console.log(app.$mdit)
-
 </script>
 
 <template>
   <div>
-    <p>{{ article.data.attributes.title }}</p>
-    <div v-html="app.$mdit.render(article.data.attributes.content)"></div>
+    <div v-html="app.$mdit.render(((article.data as IStrapiContent).attributes as IStrapiPost).content)"></div>
     <div>
       {{ $route.params.id }}
     </div>

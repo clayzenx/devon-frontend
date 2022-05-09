@@ -31,7 +31,7 @@ interface IStrapiPost {
   Poster?: string;
 }
 
-interface IStrapiLocales {
+interface IStrapiContent {
   attributes: {}
   meta: {}
 }
