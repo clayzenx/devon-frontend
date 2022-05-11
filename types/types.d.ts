@@ -45,5 +45,15 @@ interface IStrapiMeta {
   }
 }
 
+interface ILangs {
+  js: string,
+  ts: string,
+  html: string,
+  css: string
+  sh: string,
+  vue: string,
+  svelte: string
+}
+
 type ILocale = 'ru' | 'en' | 'es' | 'zh' | 'ja'
 

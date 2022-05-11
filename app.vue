@@ -26,12 +26,14 @@ body,
   padding: 0;
 }
 
-html.light {
-  background: #fff;
+html.light,
+html.light pre {
+  background: #fff !important;
 }
 
-html.dark {
-  background: #000;
+html.dark,
+html.dark pre {
+  background: #000 !important;
   color: rgba(255, 255, 255, .9);
 }
 </style>
