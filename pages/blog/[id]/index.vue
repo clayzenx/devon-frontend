@@ -12,7 +12,6 @@ let postID: any = null
 const { data: article } = await useAsyncData(`article-${params.id}`,
   () => findOne<Strapi4Response<IStrapiPost>>('articles', +postID?.value || +params.id)
 )
-useHead({ titleTemplate: ((article.value.data as IStrapiContent).attributes as IStrapiPost).title })
 postID = computed(() => {
   const currentID = allLocales.findIndex(loc => loc === ((article.value.data as IStrapiContent).attributes as IStrapiPost).locale)
   const redirectID = allLocales.findIndex(loc => loc === locale.value)
@@ -24,12 +23,23 @@ const getPostBody = () =>
     app.$mdit.render(((article.value.data as IStrapiContent).attributes as IStrapiPost).content)
   )
 
+const copy = (e: Event) => {
+  const source = ref((e.target as HTMLElement)?.closest('code')?.innerText)
+  useClipboard({ source: source.value }).copy()
+}
+
+onMounted(() => {
+  const copyIcons = document.querySelectorAll('.copy-icon')
+  copyIcons.forEach(node => (node as HTMLElement).onclick = copy)
+})
+
 watch(locale, () => push('/blog/' + postID.value))
+useHead({ titleTemplate: ((article.value.data as IStrapiContent).attributes as IStrapiPost).title })
 </script>
 
 <template>
   <div class="post">
-    <div v-html="getPostBody()" />
+    <div class="content" v-html="getPostBody()" />
 
     <div class="hidden">
       <div class="i-simple-icons-typescript"></div>
@@ -39,15 +49,40 @@ watch(locale, () => push('/blog/' + postID.value))
       <div class="i-simple-icons-css3"></div>
       <div class="i-simple-icons-gnubash"></div>
       <div class="i-simple-icons-svelte"></div>
+      <div class="i-ion-copy-outline"></div>
     </div>
+
   </div>
 </template>
 
 <style>
 .post pre {
-  padding: 15px;
+  position: relative;
+  padding: 1em;
   border-radius: 1em;
   width: 100%;
+}
+
+.post .copy-icon {
+  opacity: .3;
+}
+
+.post .copy-icon {
+  display: none;
+}
+
+pre:hover .copy-icon {
+  display: block;
+}
+
+
+.post ul {
+  list-style-type: disc;
+  padding-left: 2em;
+}
+
+.post a {
+  text-decoration: underline;
 }
 
 .dark .post pre {
@@ -60,5 +95,37 @@ watch(locale, () => push('/blog/' + postID.value))
 
 .hidden {
   display: none;
+}
+
+.content blockquote,
+.content h1,
+.content h2,
+.content h3,
+.content ul {
+  margin: .75em 0;
+}
+
+.content pre {
+  margin-bottom: 1em;
+}
+
+.light .content h1,
+.light .content h2,
+.light .content h3 {
+  color: #000;
+}
+
+.content h1,
+.content h2,
+.content h3 {
+  color: #fff;
+}
+
+.content strong {
+  color: #fff;
+}
+
+.light .content strong {
+  color: #000;
 }
 </style>

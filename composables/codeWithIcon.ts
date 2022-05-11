@@ -12,7 +12,7 @@ const withIcon = (_: string, p1: string) => {
   const split = p1.split('.')
   const format = split[split.length - 1]
   return `
-    <div flex gap-2 style="padding: 5px 10px">
+    <div flex gap-2 style="padding: 0 10px">
       <div op70 class="${icons[format as keyof ILangs]}"></div>
       <span op80>${p1}</span>
     </div>`
@@ -20,6 +20,7 @@ const withIcon = (_: string, p1: string) => {
 
 export const addIcons = (html: string) => {
   html = html.replaceAll(/<s>(.*)<\/s>/g, withIcon)
+  html = html.replaceAll(/<code>/g, '<code><div absolute class="copy-icon i-ion-copy-outline" style="right:15px;" cursor-pointer></div>')
   return html
 }
 

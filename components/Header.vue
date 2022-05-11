@@ -1,7 +1,7 @@
 <template>
   <header ma mt-10 max-w-4xl flex justify-between>
     <h2>devon<span animate-pulse>_</span> </h2>
-    <section flex gap4 align-center>
+    <section flex gap4 items-center>
       <Locale />
       <DarkToggle />
     </section>

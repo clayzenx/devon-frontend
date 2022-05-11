@@ -24,6 +24,8 @@ body,
   height: 100vh;
   margin: 0;
   padding: 0;
+  font-size: 16px;
+  line-height: 28px;
 }
 
 html.light,
@@ -34,6 +36,30 @@ html.light pre {
 html.dark,
 html.dark pre {
   background: #000 !important;
-  color: rgba(255, 255, 255, .9);
+  color: rgba(255, 255, 255, .8);
+}
+
+html.dark a {
+  color: rgba(255, 255, 255, 1);
+  text-decoration-color: rgba(255, 255, 255, .5);
+  transition: all .3s ease-in;
+}
+
+html.dark a:hover {
+  text-decoration-color: rgba(255, 255, 255, 1);
+}
+
+h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+blockquote {
+  padding: 5px 10px;
+  border-left: 4px solid rgba(255, 255, 255, .1);
 }
 </style>
