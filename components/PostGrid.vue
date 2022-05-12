@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Strapi4Response } from '@nuxtjs/strapi/dist/runtime/types';
+const { page } = usePage()
 const { articles } = defineProps<{
   articles: Pick<Strapi4Response<IStrapiPost>, keyof Strapi4Response<IStrapiPost>>
 }>()
@@ -11,8 +12,6 @@ const posts = computed(() =>
       +new Date(p2.attributes.publishedAt) - +new Date(p1.attributes.publishedAt)
     ))
 
-console.log(articles)
-
 </script>
 
 <template>
@@ -20,6 +19,6 @@ console.log(articles)
     <Post v-for="post in posts" :post="{ id: (post as any).id, ...(post as any).attributes } as IStrapiPost"
       :key="(post as any).attributes.id" />
 
-    <Pagination :page="5" :pages="25" />
+    <Pagination :page="page" :pages="articles.meta.pagination.pageCount" />
   </div>
 </template>
