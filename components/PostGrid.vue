@@ -11,6 +11,8 @@ const posts = computed(() =>
       +new Date(p2.attributes.publishedAt) - +new Date(p1.attributes.publishedAt)
     ))
 
+console.log(articles)
+
 </script>
 
 <template>

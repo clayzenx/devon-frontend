@@ -62,4 +62,8 @@ blockquote {
   padding: 5px 10px;
   border-left: 4px solid rgba(255, 255, 255, .1);
 }
+
+code {
+  white-space: break-spaces;
+}
 </style>

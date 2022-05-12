@@ -33,12 +33,18 @@ onMounted(() => {
   copyIcons.forEach(node => (node as HTMLElement).onclick = copy)
 })
 
+const dateFormating = (dateStr: string) =>
+  (new Date(dateStr)).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' })
+
 watch(locale, () => push('/blog/' + postID.value))
 useHead({ titleTemplate: ((article.value.data as IStrapiContent).attributes as IStrapiPost).title })
 </script>
 
 <template>
   <div class="post">
+    <h1>{{ ((article.data as IStrapiContent).attributes as IStrapiPost).title }}</h1>
+    <span>{{ dateFormating(((article.data as IStrapiContent).attributes as IStrapiPost).publishedAt)
+    }}</span>
     <div class="content" v-html="getPostBody()" />
 
     <div class="hidden">
@@ -61,6 +67,10 @@ useHead({ titleTemplate: ((article.value.data as IStrapiContent).attributes as I
   padding: 1em;
   border-radius: 1em;
   width: 100%;
+}
+
+.post>span {
+  opacity: .5;
 }
 
 .post .copy-icon {
@@ -97,35 +107,59 @@ pre:hover .copy-icon {
   display: none;
 }
 
-.content blockquote,
-.content h1,
-.content h2,
-.content h3,
-.content ul {
+.post em {
+  background: #1c1c1e;
+  padding: .3em;
+  border-radius: .3em;
+  font-style: normal;
+}
+
+.post .date {
+  margin-bottom: .5em;
+}
+
+.light .post em {
+  background: #f1f3f5;
+  color: #000;
+}
+
+.post blockquote,
+.post h1,
+.post h2,
+.post h3,
+.post ul {
   margin: .75em 0;
 }
 
-.content pre {
+.post pre {
   margin-bottom: 1em;
 }
 
-.light .content h1,
-.light .content h2,
-.light .content h3 {
+.post .content>div {
+  margin-top: .5em;
+}
+
+.light .post h1,
+.light .post h2,
+.light .post h3 {
   color: #000;
 }
 
-.content h1,
-.content h2,
-.content h3 {
+.post h1,
+.post h2,
+.post h3 {
   color: #fff;
 }
 
-.content strong {
+.post strong {
   color: #fff;
 }
 
-.light .content strong {
+.light .post strong {
   color: #000;
+}
+
+.post>.content {
+  padding: 20px 0;
 }
 </style>
