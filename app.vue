@@ -36,7 +36,7 @@ html.light pre {
 html.dark,
 html.dark pre {
   background: #000 !important;
-  color: rgba(255, 255, 255, .8);
+  color: rgba(255, 255, 255, .7);
 }
 
 html.dark a {

@@ -33,8 +33,14 @@ interface IStrapiPost {
 
 interface IStrapiContent {
   attributes: {}
-  meta: {}
+  meta: IStrapiMeta
 }
+
+interface IStrapiArticle {
+  attributes: IStrapiPost
+  id: number
+}
+
 
 interface IStrapiMeta {
   pagination?: {
