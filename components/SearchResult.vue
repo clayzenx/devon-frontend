@@ -20,25 +20,25 @@ watch(locale, refresh)
 
 <template>
   <div mt-3 flex flex-col gap-3>
-    <span v-if="!hits.length" op30 font-500 mb-2>{{ noEntry }}</span>
-    <section v-if="posts.justNow.length">
-      <h3 op30 font-500 mb-2>{{ justNow }}</h3>
+    <span v-if="!hits.length" op30 font-500>{{ noEntry }}</span>
+    <section flex flex-col gap-4 v-if="posts.justNow.length">
+      <h3 op30 font-500>{{ justNow }}</h3>
       <Post v-for="post in posts.justNow" :post="post" :key="post.id" />
     </section>
-    <section v-if="posts.today.length">
-      <h3 op30 font-500 mb-2>{{ today }}</h3>
+    <section flex flex-col gap-4 v-if="posts.today.length">
+      <h3 op30 font-500>{{ today }}</h3>
       <Post v-for="post in posts.today" :post="post" :key="post.id" />
     </section>
-    <section v-if="posts.yesterday.length">
-      <h3 op30 font-500 mb-2>{{ yesterday }}</h3>
+    <section flex flex-col gap-4 v-if="posts.yesterday.length">
+      <h3 op30 font-500>{{ yesterday }}</h3>
       <Post v-for="post in posts.yesterday" :post="post" :key="post.id" />
     </section>
-    <section v-if="posts.lastWeek.length">
-      <h3 op30 font-500 mb-2>{{ lastWeek }}</h3>
+    <section flex flex-col gap-4 v-if="posts.lastWeek.length">
+      <h3 op30 font-500>{{ lastWeek }}</h3>
       <Post v-for="post in posts.lastWeek" :post="post" :key="post.id" />
     </section>
-    <section v-if="posts.later.length">
-      <h3 op30 font-500 mb-2>{{ later }}</h3>
+    <section flex flex-col gap-4 v-if="posts.later.length">
+      <h3 op30 font-500>{{ later }}</h3>
       <Post v-for="post in posts.later" :post="post" :key="post.id" />
     </section>
   </div>
