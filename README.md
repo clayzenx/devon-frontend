@@ -8,5 +8,5 @@ Personal site & block. Based on <a href="https://strapi.io/why-strapi">strapi</a
 
 <p align="center">
 <br>
-<a href="https://627b69246585aa00081826e8--bucolic-faloodeh-54e0bd.netlify.app/">🖥Realtime demo</a>
+<a href="https://627ca796f869270009373560--bucolic-faloodeh-54e0bd.netlify.app/blog">🖥Realtime demo</a>
 
