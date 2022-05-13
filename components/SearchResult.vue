@@ -7,7 +7,7 @@ const { hits } = defineProps<{
 const { locale } = useLocale()
 const { find } = useStrapi4()
 const { data, refresh } = await useAsyncData('search-result-locale',
-  () => find<Strapi4Response<IStrapiLocales>>('search-result-locale', { locale: locale.value })
+  () => find<Strapi4Response<IStrapiContent>>('search-result-locale', { locale: locale.value })
 )
 const { justNow, today, yesterday, lastWeek, later, noEntry } = (data.value.data as any).attributes
 
