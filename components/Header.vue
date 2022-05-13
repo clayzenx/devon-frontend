@@ -3,6 +3,7 @@
     <h2>devon<span animate-pulse>_</span> </h2>
     <section flex gap4 items-center>
       <Locale />
+      <a href="https://github.com/clayzenx/devon-frontend" i-ion-logo-github op70 />
       <DarkToggle />
     </section>
   </header>
