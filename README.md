@@ -8,5 +8,5 @@ Personal site & blog. Based on <a href="https://strapi.io/why-strapi">strapi</a>
 
 <p align="center">
 <br>
-<a href="https://627ca796f869270009373560--bucolic-faloodeh-54e0bd.netlify.app/blog">🖥Realtime demo</a>
+<a href="https://6280d517a64298000a91e817--bucolic-faloodeh-54e0bd.netlify.app">🖥Realtime demo</a>
 
