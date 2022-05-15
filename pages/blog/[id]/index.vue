@@ -13,15 +13,15 @@ const { data: article } = await useAsyncData(`article-${params.id}`,
   () => findOne<Strapi4Response<IStrapiPost>>('articles', +postID?.value || +params.id)
 )
 postID = computed(() => {
-  const currentID = allLocales.findIndex(loc => loc === ((article.value.data as IStrapiContent).attributes as IStrapiPost).locale)
+  const currentID = allLocales.findIndex(loc => loc === ((article?.value?.data as IStrapiContent).attributes as IStrapiPost).locale)
   const redirectID = allLocales.findIndex(loc => loc === locale.value)
   return +params.id - (currentID - redirectID)
 });
 
 const getPostBody = () =>
-  addIcons(
+  article.value.data ? addIcons(
     app.$mdit.render(((article.value.data as IStrapiContent).attributes as IStrapiPost).content)
-  )
+  ) : null
 
 const copy = (e: Event) => {
   const source = ref((e.target as HTMLElement)?.closest('code')?.innerText)
@@ -34,14 +34,13 @@ onMounted(() => {
 })
 
 const dateFormating = (dateStr: string) =>
-  (new Date(dateStr)).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' })
+  (new Date(dateStr)).toLocaleDateString(locale.value === "en" ? "en-US" : "ru-RU", { year: 'numeric', month: 'long', day: 'numeric' })
 
 watch(locale, () => push('/blog/' + postID.value))
-useHead({ titleTemplate: ((article.value.data as IStrapiContent).attributes as IStrapiPost).title })
 </script>
 
 <template>
-  <div class="post">
+  <div class="post" v-if="article.data">
     <h1>{{ ((article.data as IStrapiContent).attributes as IStrapiPost).title }}</h1>
     <span>{{ dateFormating(((article.data as IStrapiContent).attributes as IStrapiPost).publishedAt)
     }}</span>
@@ -64,7 +63,7 @@ useHead({ titleTemplate: ((article.value.data as IStrapiContent).attributes as I
 <style>
 .post pre {
   position: relative;
-  padding: 1em;
+  padding: 1.5em;
   border-radius: 1em;
   width: 100%;
 }
@@ -88,7 +87,7 @@ pre:hover .copy-icon {
 
 .post ul {
   list-style-type: disc;
-  padding-left: 2em;
+  padding-left: 1.5em;
 }
 
 .post a {
@@ -131,12 +130,16 @@ pre:hover .copy-icon {
   margin: .75em 0;
 }
 
+.post blockquote {
+  padding-left: 1.25em;
+}
+
 .post pre {
   margin-bottom: 1em;
 }
 
 .post .content>div {
-  margin-top: .5em;
+  margin-top: 1em;
 }
 
 .light .post h1,

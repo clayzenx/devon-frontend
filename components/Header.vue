@@ -1,7 +1,7 @@
 <template>
   <header ma mt-10 max-w-4xl flex justify-between>
     <nuxt-link to="/">
-      <img src="logo.svg" alt="">
+      <img src="/logo.svg" />
     </nuxt-link>
     <section flex gap4 items-center>
       <Locale />
