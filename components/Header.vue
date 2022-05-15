@@ -1,6 +1,8 @@
 <template>
   <header ma mt-10 max-w-4xl flex justify-between>
-    <h2>devon<span animate-pulse>_</span> </h2>
+    <nuxt-link to="/">
+      <img src="logo.svg" alt="">
+    </nuxt-link>
     <section flex gap4 items-center>
       <Locale />
       <a href="https://github.com/clayzenx/devon-frontend" i-ion-logo-github op70 />
